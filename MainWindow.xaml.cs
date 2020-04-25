@@ -33,6 +33,7 @@ namespace LoudSong
         private DispatcherTimer timer; // Timer for calculating spans of time.
         private CustomDialogWindow customDialogWindow; // Custom DialogWindow for user inputs.
         private CustomDialogWindowGenre windowsGenre; // Custom DialogWindow for choosing the Song's Genre.
+        private Song song; // Current song being played after retrieving information from the database.
 
         private bool isDragging; // Boolean which represents if a the user is dragging the left slider. True = it IS being dragged | False = it IS NOT being dragged.
         private bool MediaElementIsPaused = false; // Boolean which represents if the song is paused. True = Paused | False = NOT Paused.
@@ -340,57 +341,64 @@ namespace LoudSong
         {
             try
             {
-                connection = new MySqlConnection(DataBaseUtil.MySQLDatabaseConnection); // Initializing the connection's settings.
-                connection.Open(); // Opening said MySQL Connection.
+                if (listSongsReproduction.HasItems) // Checks if there's at least one song in the playlist before attempting to save information.
+                {
+                    connection = new MySqlConnection(DataBaseUtil.MySQLDatabaseConnection); // Initializing the connection's settings.
+                    connection.Open(); // Opening said MySQL Connection.
 
-                MySqlCommand queryCreateDB = new MySqlCommand(DataBaseUtil.MySQLCreateDatabase, connection); // Preparing the command which creates the MySQL database.
-                MySqlCommand queryUseDB = new MySqlCommand(DataBaseUtil.MySQLUseDatabase, connection); // Preparing the command which selects the just created database.
-                MySqlCommand queryCreateTable = new MySqlCommand(DataBaseUtil.MySQLCreateTable, connection); // Preparing the command which creates the MySQL Table which saves the songs' information.
-                MySqlCommand queryInsertSong; // Preparing the command which inserts a Song in the MySQL Table.
+                    MySqlCommand queryCreateDB = new MySqlCommand(DataBaseUtil.MySQLCreateDatabase, connection); // Preparing the command which creates the MySQL database.
+                    MySqlCommand queryUseDB = new MySqlCommand(DataBaseUtil.MySQLUseDatabase, connection); // Preparing the command which selects the just created database.
+                    MySqlCommand queryCreateTable = new MySqlCommand(DataBaseUtil.MySQLCreateTable, connection); // Preparing the command which creates the MySQL Table which saves the songs' information.
+                    MySqlCommand queryInsertSong; // Preparing the command which inserts a Song in the MySQL Table.
 
-                queryCreateDB.ExecuteNonQuery(); // Creating the MySQL Database.
-                queryUseDB.ExecuteNonQuery(); // Selecting the just created database.
-                queryCreateTable.ExecuteNonQuery(); // Preparing the command which creates the MySQL Table which saves the songs' information.
+                    queryCreateDB.ExecuteNonQuery(); // Creating the MySQL Database.
+                    queryUseDB.ExecuteNonQuery(); // Selecting the just created database.
+                    queryCreateTable.ExecuteNonQuery(); // Preparing the command which creates the MySQL Table which saves the songs' information.
 
-                customDialogWindow = new CustomDialogWindow("Write the song's title. Please, check you're writing it right!", 
-                    "You wrote an invalid song's title! Please, check the following hints:\n\n- You didn't write anything in the box below.\n- The song's title exceeds 50 characters.", 50, false, false); // Assigning CustomDialogWindow for the Song's Title.
-                customDialogWindow.ShowDialog(); // Displaying the CustomDialogWindow.
-                songTitle = customDialogWindow.returnInfo(); // Storing the Song's Title into its variable thanks to the user's input in the CustomDialogWindow.
+                    customDialogWindow = new CustomDialogWindow("Write the song's title. Please, check you're writing it right!", 
+                        "You wrote an invalid song's title! Please, check the following hints:\n\n- You didn't write anything in the box below.\n- The song's title exceeds 50 characters.", 50, false, false); // Assigning CustomDialogWindow for the Song's Title.
+                    customDialogWindow.ShowDialog(); // Displaying the CustomDialogWindow.
+                    songTitle = customDialogWindow.returnInfo(); // Storing the Song's Title into its variable thanks to the user's input in the CustomDialogWindow.
 
-                windowsGenre = new CustomDialogWindowGenre(); // Assigning CustomDialogWindowGenre for the Song's Genre.
-                windowsGenre.ShowDialog(); // Displaying the CustomDialogWindowGenre.
-                songGenre = CustomDialogWindowGenre.genreString; // Storing the Song's Genre into its variable thanks to the user's input in the CustomDialogWindowGenre.
+                    windowsGenre = new CustomDialogWindowGenre(); // Assigning CustomDialogWindowGenre for the Song's Genre.
+                    windowsGenre.ShowDialog(); // Displaying the CustomDialogWindowGenre.
+                    songGenre = CustomDialogWindowGenre.genreString; // Storing the Song's Genre into its variable thanks to the user's input in the CustomDialogWindowGenre.
 
-                customDialogWindow = new CustomDialogWindow("Paste the song's lyrics. If the song has no lyrics, just write a hyphen (-)!",
-                    "Oh, something went wrong! Please, check the following hints:\n\n- You didn't write the lyrics or a hyphen (-).", 4000, false, false); // Assigning CustomDialogWindow for the Song's Lyrics.
-                customDialogWindow.ShowDialog(); // Displaying the CustomDialogWindow.
-                songLyrics = customDialogWindow.returnInfo(); // Storing the Song's Lyrics into its variable thanks to the user's input in the CustomDialogWindow.
+                    customDialogWindow = new CustomDialogWindow("Paste the song's lyrics. If the song has no lyrics, just write a hyphen (-)!",
+                        "Oh, something went wrong! Please, check the following hints:\n\n- You didn't write the lyrics or a hyphen (-).", 4000, false, false); // Assigning CustomDialogWindow for the Song's Lyrics.
+                    customDialogWindow.ShowDialog(); // Displaying the CustomDialogWindow.
+                    songLyrics = customDialogWindow.returnInfo(); // Storing the Song's Lyrics into its variable thanks to the user's input in the CustomDialogWindow.
 
-                customDialogWindow = new CustomDialogWindow("Write the song's artist. It doesn't matter if it's just a person or a band!",
-                  "You wrote an invalid artist name! Please, check the following hints:\n\n- You didn't write anything in the box below.\n- The song's artist exceeds 50 characters.", 50, false, false); // Assigning CustomDialogWindow for the Song's Artist.
-                customDialogWindow.ShowDialog(); // Displaying the CustomDialogWindow.
-                songArtist = customDialogWindow.returnInfo(); // Storing the Song's Artist into its variable thanks to the user's input in the CustomDialogWindow.
+                    customDialogWindow = new CustomDialogWindow("Write the song's artist. It doesn't matter if it's just a person or a band!",
+                      "You wrote an invalid artist name! Please, check the following hints:\n\n- You didn't write anything in the box below.\n- The song's artist exceeds 50 characters.", 50, false, false); // Assigning CustomDialogWindow for the Song's Artist.
+                    customDialogWindow.ShowDialog(); // Displaying the CustomDialogWindow.
+                    songArtist = customDialogWindow.returnInfo(); // Storing the Song's Artist into its variable thanks to the user's input in the CustomDialogWindow.
 
-                customDialogWindow = new CustomDialogWindow("Write the song's album. If the song has no album, just write a hyphen (-)!",
-                  "You wrote an invalid song's album! Please, check the following hints:\n\n- You didn't write the hyphen (-) in the box below.\n- The song's album exceeds 50 characters.", 50, false, false); // Assigning CustomDialogWindow for the Song's Album.
-                customDialogWindow.ShowDialog(); // Displaying the CustomDialogWindow.
-                songAlbum = customDialogWindow.returnInfo(); // Storing the Song's Album into its variable thanks to the user's input in the CustomDialogWindow.
+                    customDialogWindow = new CustomDialogWindow("Write the song's album. If the song has no album, just write a hyphen (-)!",
+                      "You wrote an invalid song's album! Please, check the following hints:\n\n- You didn't write the hyphen (-) in the box below.\n- The song's album exceeds 50 characters.", 50, false, false); // Assigning CustomDialogWindow for the Song's Album.
+                    customDialogWindow.ShowDialog(); // Displaying the CustomDialogWindow.
+                    songAlbum = customDialogWindow.returnInfo(); // Storing the Song's Album into its variable thanks to the user's input in the CustomDialogWindow.
 
-                customDialogWindow = new CustomDialogWindow("Write the song's duration. Please, make sure to write the following pattern: 03:29\nDon't forget to write the first 0!",
-                  "You wrote an invalid song's duration! Please, check the following hints:\n\n- You didn't write a valid duration like: 03:29.\n- The song's duration exceeds 5 characters.", 5, true, false); // Assigning CustomDialogWindow for the Song's Duration.
-                customDialogWindow.ShowDialog(); // Displaying the CustomDialogWindow.
-                songDuration = customDialogWindow.returnInfo(); // Storing the Song's Duration into its variable thanks to the user's input in the CustomDialogWindow.
+                    customDialogWindow = new CustomDialogWindow("Write the song's duration. Please, make sure to write the following pattern: 03:29\nDon't forget to write the first 0!",
+                      "You wrote an invalid song's duration! Please, check the following hints:\n\n- You didn't write a valid duration like: 03:29.\n- The song's duration exceeds 5 characters.", 5, true, false); // Assigning CustomDialogWindow for the Song's Duration.
+                    customDialogWindow.ShowDialog(); // Displaying the CustomDialogWindow.
+                    songDuration = customDialogWindow.returnInfo(); // Storing the Song's Duration into its variable thanks to the user's input in the CustomDialogWindow.
 
-                customDialogWindow = new CustomDialogWindow("Write the song's release year! Please, make sure to write the following pattern: 1994",
-                  "You wrote an invalid song's duration! Please, check the following hints:\n\n- You didn't a valid year like: 1993.\n- The song's year is below or above 4 numbers.", 5, false, true); // Assigning CustomDialogWindow for the Song's Year.
-                customDialogWindow.ShowDialog(); // Displaying the CustomDialogWindow.
-                songYear = int.Parse(customDialogWindow.returnInfo()); // Storing the Song's Year into its variable thanks to the user's input in the CustomDialogWindow.
+                    customDialogWindow = new CustomDialogWindow("Write the song's release year! Please, make sure to write the following pattern: 1994",
+                      "You wrote an invalid song's duration! Please, check the following hints:\n\n- You didn't a valid year like: 1993.\n- The song's year is below or above 4 numbers.", 5, false, true); // Assigning CustomDialogWindow for the Song's Year.
+                    customDialogWindow.ShowDialog(); // Displaying the CustomDialogWindow.
+                    songYear = int.Parse(customDialogWindow.returnInfo()); // Storing the Song's Year into its variable thanks to the user's input in the CustomDialogWindow.
 
-                queryInsertSong = new MySqlCommand($"INSERT INTO song VALUES('{songTitle}', '{songGenre}', '{songLyrics}', '{songDuration}', '{songArtist}', '{songAlbum}', {songYear}, {Convert.ToByte(songFavourite)});", 
-                    connection); // Preparing Insert MySQL statement.
-                queryInsertSong.ExecuteNonQuery(); // Inserting data into the database.
+                    queryInsertSong = new MySqlCommand($"INSERT INTO song VALUES('{songTitle}', '{songGenre}', '{songLyrics}', '{songDuration}', '{songArtist}', '{songAlbum}', {songYear}, {Convert.ToByte(songFavourite)});", 
+                        connection); // Preparing Insert MySQL statement.
+                    queryInsertSong.ExecuteNonQuery(); // Inserting data into the database.
 
-                connection.Close(); // Closing the MySQL Connection.
+                    connection.Close(); // Closing the MySQL Connection.
+                }
+                else // There isn't at least one song in the playlist before attempting to save information.
+                {
+                    MessageBox.Show("You can't save information about a song if there's none in the playlist!", "Error!"); // Shows the exception if some problem happens.
+                }
             }
             catch (Exception ex)
             {
@@ -403,13 +411,81 @@ namespace LoudSong
         {
             try
             {
-                /*
-                 * ------------------------------------------------------------------------------------------------------------------------
-                 * ------------------------------------------------------------------------------------------------------------------------
-                 * ------------------------------------------------------------------------------------------------------------------------
-                 */
+                if (listSongsReproduction.HasItems) // Checks if there's at least one song in the playlist before attempting to retrieve information.
+                {
+                    connection = new MySqlConnection(DataBaseUtil.MySQLDatabaseConnection); // Initializing the connection's settings.
+                    connection.Open(); // Opening said MySQL Connection.
+
+                    MySqlCommand queryCreateDB = new MySqlCommand(DataBaseUtil.MySQLCreateDatabase, connection); // Preparing the command which creates the MySQL database.
+                    MySqlCommand queryUseDB = new MySqlCommand(DataBaseUtil.MySQLUseDatabase, connection); // Preparing the command which selects the just created database.
+                    MySqlCommand queryCreateTable = new MySqlCommand(DataBaseUtil.MySQLCreateTable, connection); // Preparing the command which creates the MySQL Table which saves the songs' information.
+                    MySqlCommand querySongInfo = new MySqlCommand($"SELECT * FROM song WHERE title = '{currentTrack.ToString().Replace("System.Windows.Controls.ListBoxItem: ", "")}';", connection); // Preparing the command which creates the MySQL query.
+                    MySqlDataReader querySongInfoReader;  // Class prepared for reading retrieved data.
+
+                    queryCreateDB.ExecuteNonQuery(); // Creating the MySQL Database.
+                    queryUseDB.ExecuteNonQuery(); // Selecting the just created database.
+                    queryCreateTable.ExecuteNonQuery(); // Preparing the command which creates the MySQL Table which saves the songs' information.
+                    querySongInfoReader = querySongInfo.ExecuteReader(); // Assigning the data reader to the query result.
+
+                    if (querySongInfoReader.Read()) // Checks if the reader can read the searched song from the database.
+                    {
+                        song = new Song(); // Preparing an empty Song object.
+
+                        string bodyInfo =
+                            $"Success on retrieving information about the current song!\n\n" +
+                            $"- TITLE -\t\t {querySongInfoReader.GetString("title")}\n" +
+                            $"- ARTIST -\t {querySongInfoReader.GetString("artist")}\n" +
+                            $"- ALBUM -\t {querySongInfoReader.GetString("album")}\n" +
+                            $"- YEAR -\t\t {querySongInfoReader.GetString("year").ToString()}\n" +
+                            $"- DURATION -\t {querySongInfoReader.GetString("duration")}\n" +
+                            $"- GENRE -\t {querySongInfoReader.GetString("genre")}\n" +
+                            $"- FAVOURITE? -\t {(querySongInfoReader.GetString("isFavourite").ToString().Equals("1") ? "Yes!" : "No")}\n" +
+                            $"- LYRICS -\n\n {querySongInfoReader.GetString("lyrics")}\n\n"; // Preparing the string for the MessageBox with the Song's information.
+
+                        song.Title = querySongInfoReader.GetString("title"); // Assigning the Song's Title.
+                        song.Artist = querySongInfoReader.GetString("artist"); // Assigning the Song's Artist.
+                        song.Album = querySongInfoReader.GetString("album"); // Assigning the Song's Album.
+                        song.Year = int.Parse(querySongInfoReader.GetString("year")); // Assigning the Song's Year.
+                        song.Duration = querySongInfoReader.GetString("duration"); // Assigning the Song's Duration.
+                        song.Favourites = (querySongInfoReader.GetString("isFavourite").ToString().Equals("1") ? true : false); // Assigning the Song's Favourite Status.
+                        song.Lyrics = querySongInfoReader.GetString("lyrics"); // Assigning the Song's Lyrics.
+
+                        switch (querySongInfoReader.GetString("genre").ToLower()) // Depending on what genre string is retrieved, the 'song' variable will be assigned one enum value.
+                        {
+                            case "lofi":
+                                song.Genre = Genre.Lofi;
+                                break;
+
+                            case "jazz":
+                                song.Genre = Genre.Jazz;
+                                break;
+
+                            case "techno":
+                                song.Genre = Genre.Techno;
+                                break;
+
+                            case "pop":
+                                song.Genre = Genre.Pop;
+                                break;
+
+                            case "new wave":
+                                song.Genre = Genre.NewWave;
+                                break;
+
+                            case "other":
+                                song.Genre = Genre.Other;
+                                break;
+                        }
+                        MessageBox.Show(bodyInfo, $"{song.Title} - Information"); // Displaying the song's information from the database.
+                    }
+                    connection.Close(); // Closing the MySQL Connection.
+                }
+                else // There isn't at least one song in the playlist before attempting to retrieve information.
+                {
+                    MessageBox.Show("You can't retrieve information about a song if there's not a current one in the playlist!", "Error!"); // Shows the exception if some problem happens.
+                }
             }
-            catch (Exception ex)
+            catch (Exception ex) 
             {
                 MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
             }

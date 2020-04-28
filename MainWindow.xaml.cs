@@ -46,6 +46,10 @@ namespace LoudSong
         private bool songFavourite; // The Song's bool for stating if it's an user's favourite song. True = it IS a favourite song | False = it IS NOT a favourite song.
         private int songYear; // The Song's Year for storing into the database.
 
+
+        SolidColorBrush Off = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+        SolidColorBrush On = new SolidColorBrush(Color.FromRgb(240, 222, 45));
+
         #endregion
 
         #region Constructor
@@ -226,17 +230,18 @@ namespace LoudSong
         #endregion
 
         #region CheckBox
-
-        // Event handler which activates when the Favourite CheckBox is checked.
-        private void chkBox_Checked(object sender, RoutedEventArgs e)
+        private void Bu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            songFavourite = true;
-        }
-
-        // Event handler which activates when the Favourite CheckBox is unchecked.
-        private void chBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            songFavourite = false;
+            if (Bu.Toggled1 == true)
+            {
+                Light.Fill = On;
+                songFavourite = true;
+            }
+            else
+            {
+                Light.Fill = Off;
+                songFavourite = false;
+            }
         }
 
         #endregion

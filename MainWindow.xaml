@@ -82,8 +82,7 @@
             <Button x:Name="buttonNextSong" Content="Next" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="35" Margin="0,0,5,0" 
                     Click="btnNext_Click"/>
         </WrapPanel>
-        <CheckBox x:Name="isFavouriteCheckBox" Grid.Row="6" Grid.Column="2" Content="Fav Song" HorizontalAlignment="Center" VerticalAlignment="Center" Height="15" Width="80" 
-                  Checked="chkBox_Checked" Unchecked="chBox_Unchecked"/>
+        
         <WrapPanel x:Name="infoPanel" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button x:Name="btnShowInfo" Content="Show Info" HorizontalAlignment="Center" VerticalAlignment="Center" Width="70" Height="35" Margin="0,0,5,0" 
                     Click="btnShowInfo_Click"/>
@@ -93,6 +92,8 @@
         <Button x:Name="buttonOpenFile" Grid.Row="6" Grid.Column="4" Content="Open Songs" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Height="35" 
                 Click="btnOpenFiles_Click"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,6,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.ColumnSpan="5" Height="25" Width="732" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+        <local:TobleButton x:Name="Bu" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" Height="22" Margin="94,24,125,33" VerticalAlignment="Center" Width="101" MouseLeftButtonDown="Bu_MouseLeftButtonDown" Grid.ColumnSpan="2" />
+        <Ellipse x:Name="Light" Grid.Row="6" Grid.Column="2" Fill="#FF0C0C0B" HorizontalAlignment="Center" Height="141" Margin="360,96,15,82" VerticalAlignment="Center" Width="142"/>
 
     </Grid>
 

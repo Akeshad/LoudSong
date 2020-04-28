@@ -716,6 +716,11 @@ namespace LoudSong
             }
         }
 
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
         #endregion
 
     }

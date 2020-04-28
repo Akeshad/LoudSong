@@ -37,3 +37,5 @@ C:\Users\Nutzer\Desktop\LoudSong\obj\Debug\CustomDialogWindow.baml
 C:\Users\Nutzer\Desktop\LoudSong\obj\Debug\CustomDialogWindow.g.cs
 C:\Users\Nutzer\Desktop\LoudSong\obj\Debug\CustomDialogWindowGenre.baml
 C:\Users\Nutzer\Desktop\LoudSong\obj\Debug\CustomDialogWindowGenre.g.cs
+C:\Users\Nutzer\Desktop\LoudSong\obj\Debug\App.baml
+C:\Users\Nutzer\Desktop\LoudSong\obj\Debug\ButtonMainStyle.baml

@@ -92,6 +92,7 @@
         </WrapPanel>
         <Button x:Name="buttonOpenFile" Grid.Row="6" Grid.Column="4" Content="Open Songs" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Height="35" 
                 Click="btnOpenFiles_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,6,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.ColumnSpan="5" Height="25" Width="732" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
 
     </Grid>
 

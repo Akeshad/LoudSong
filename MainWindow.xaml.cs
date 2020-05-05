@@ -35,6 +35,9 @@ namespace LoudSong
         private CustomDialogWindowGenre windowsGenre; // Custom DialogWindow for choosing the Song's Genre.
         private Song song; // Current song being played after retrieving information from the database.
 
+        private SolidColorBrush toggleOff = new SolidColorBrush(Color.FromRgb(160, 160, 160)); // Color when the Favourite toggle option is 'Off'.  
+        private SolidColorBrush toggleOn = new SolidColorBrush(Color.FromRgb(130, 190, 125)); // Color when the Favourite toggle option is 'On'. 
+
         private bool isDragging; // Boolean which represents if a the user is dragging the left slider. True = it IS being dragged | False = it IS NOT being dragged.
         private bool MediaElementIsPaused = false; // Boolean which represents if the song is paused. True = Paused | False = NOT Paused.
         private string songGenre; // The Song's Genre for storing into the database.
@@ -45,9 +48,6 @@ namespace LoudSong
         private string songAlbum; // The Song's Album for storing into the database.
         private bool songFavourite; // The Song's bool for stating if it's an user's favourite song. True = it IS a favourite song | False = it IS NOT a favourite song.
         private int songYear; // The Song's Year for storing into the database.
-
-        SolidColorBrush toggleOff = new SolidColorBrush(Color.FromRgb(0, 0, 0)); // Color when the Favourite toggle option is 'Off'.
-        SolidColorBrush toggleOn = new SolidColorBrush(Color.FromRgb(240, 222, 45)); // Color when the Favourite toggle option is 'On'.
 
         #endregion
 
@@ -60,7 +60,7 @@ namespace LoudSong
 
             currentTrack = null;
             previousTrack = null;
-            currentTrackIndicator = Brushes.Violet; // Sets the current song in a purple foreground.
+            currentTrackIndicator = Brushes.DarkBlue; // Sets the current song in a purple foreground.
             trackColor = listSongsReproduction.Foreground;  // Sets the rest of songs in a different foreground color.
 
             timer = new DispatcherTimer();
@@ -219,26 +219,27 @@ namespace LoudSong
             openFiles(); // Function which allows to select one or many music files in order to be added to the playlist.
         }
 
-        /*
+        // Event handler which allows the user to move the window while left clicking and dragging on a invisible TextBlock situated at the top border of the window.
         private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove();
+            this.DragMove(); // Allows to move the window.
         }
-        */
 
         #endregion
 
         #region CheckBox
+
+        // Event handler which activates when the toggle button is being checked or unchecked.
         private void Bu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (toggleFav.Toggled1 == true)
+            if (toggleFav.Toggled1 == true) // Toggle On.
             {
-                Light.Fill = toggleOn;
+                Light.Fill = toggleOn; // Sets the color On to the toggle.
                 songFavourite = true;
             }
-            else
+            else // Toggle Off.
             {
-                Light.Fill = toggleOff;
+                Light.Fill = toggleOff; // Sets the color Off to the toggle.
                 songFavourite = false;
             }
         }
@@ -718,11 +719,6 @@ namespace LoudSong
             {
                 MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
             }
-        }
-
-        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
         }
 
         #endregion

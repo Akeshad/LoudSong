@@ -90,22 +90,25 @@
     <Compile Include="CustomDialogWindow.xaml.cs">
       <DependentUpon>CustomDialogWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataBaseUtil.cs" />
+    <Compile Include="Classes\DataBaseUtil.cs" />
     <Compile Include="CustomDialogWindowGenre.xaml.cs">
       <DependentUpon>CustomDialogWindowGenre.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Favourites.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SliderStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ToggleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Song.cs" />
+    <Compile Include="Classes\Song.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -133,7 +136,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\background.jpg" />
+    <Resource Include="Images\background.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

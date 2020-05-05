@@ -1,13 +1,17 @@
 ﻿<Window x:Class="LoudSong.CustomDialogWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Setting Song's Information" Height="200" Width="480">
+        Title="Setting Song's Information" Height="250" Width="580"
+        Background="LightSteelBlue"
+        WindowStyle="None"
+        WindowStartupLocation ="CenterScreen">
 
     <!-- Grid's Settings -->
     <Grid x:Name="dialogWindowGrid">
 
         <!-- Grid's rows -->
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.4*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -19,16 +23,25 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- First Row Elements - Label -->
-        <Label Name="lblCustomDialog" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Padding="10" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <!-- First Row Elements - TextBlock for moving the window and Close + Minimize Buttons -->
+        <WrapPanel x:Name="panelButtons" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <TextBlock x:Name="txtBlockMovingWindow" Width="500" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+            <Ellipse x:Name="btnMin" Fill="LightBlue" Height="20" Width="20" Margin="0,3,5,3" MouseLeftButtonDown="btnMin_MinApp"/>
+            <Ellipse x:Name="btnClose" Fill="LightPink" Height="20" Width="20" Margin="0,3,5,3" MouseLeftButtonDown="btnClose_CloseApp"/>
+        </WrapPanel>
 
-        <!-- Second Row Elements - TextBox -->
-        <TextBox Name="txtBoxCustomDialog" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Padding="3,3,0,0" Margin="0,0,0,5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="200" MaxLength="4000" TextWrapping="NoWrap"/>
+        <!-- Second Row Elements - Label -->
+        <Label x:Name="lblCustomDialog" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Padding="10" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-        <!-- Third Row Elements - Buttons -->
-        <Button Name="btnOkCustomDialog" Grid.Row="2" Grid.Column="0" Padding="5" Margin="0,0,0,5" Content="OK" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Click="btnOk_Click"/>
-        <Button Name="btnCancelCustomDialog" Grid.Row="2" Grid.Column="1" Padding="5" Margin="0,0,0,5" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Click="btnCancel_Click"/>
+        <!-- Third Row Elements - TextBox -->
+        <TextBox Name="txtBoxCustomDialog" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Padding="3,3,0,0" Margin="0,0,0,5" HorizontalAlignment="Center" 
+                 VerticalAlignment="Center" Height="25" Width="200" MaxLength="4000" TextWrapping="NoWrap"/>
+
+        <!-- Fourth Row Elements - Buttons -->
+        <Button Name="btnOkCustomDialog" Grid.Row="3" Grid.Column="0" Padding="5" Margin="0,0,0,5" Content="OK" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Click="btnOk_Click"/>
+        <Button Name="btnCancelCustomDialog" Grid.Row="3" Grid.Column="1" Padding="5" Margin="0,0,0,5" Content="Cancel" HorizontalAlignment="Center" 
+                VerticalAlignment="Center" Width="100" Click="btnCancel_Click"/>
 
     </Grid>
-    
+
 </Window>

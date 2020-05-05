@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace LoudSong
 {
     // CustomDialogWindow represents the user's inputs window. This class contains private fields and event handlers which manages all the user's inputs. Extends from WPF Window.
@@ -98,6 +99,38 @@ namespace LoudSong
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close(); // Closes the CustomDialogWindow.
+        }
+
+        // Event handler which closes the app.
+        private void btnClose_CloseApp(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Close(); // Closes the app.
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+            }
+        }
+
+        // Event handler which minimizes the window.
+        private void btnMin_MinApp(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                WindowState = WindowState.Minimized; // Minimizes the window.
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+            }
+        }
+
+        // Event handler which allows the user to move the window while left clicking and dragging on a invisible TextBlock situated at the top border of the window.
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove(); // Allows to move the window.
         }
 
         #endregion

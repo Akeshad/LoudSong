@@ -6,10 +6,11 @@
              xmlns:local="clr-namespace:LoudSong"
              mc:Ignorable="d" Height="176.667" Width="288.667">
 
-    <Viewbox Margin="0,2,2,1">
+    <Viewbox Margin="2">
         <Grid HorizontalAlignment="Left" Height="60" Margin="0" VerticalAlignment="Top" Width="100">
-            <Rectangle x:Name="Back" Fill="#FFA0A0A0" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="96" Margin="2,2,0,0" RadiusY="29" RadiusX="29" MouseLeftButtonDown="Back_MouseLeftButtonDown"/>
-            <Ellipse x:Name="Dot" Fill="White" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" Width="50" MouseLeftButtonDown="Dot_MouseLeftButtonDown"/>
+            <Rectangle x:Name="Back" Fill="#FFA0A0A0" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="96" Margin="2,2,0,0" RadiusY="29" RadiusX="29" 
+                       MouseLeftButtonDown="Back_MouseLeftButtonDown"/>
+            <Ellipse x:Name="Dot" Fill="White" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" Width="50" MouseLeftButtonDown="Back_MouseLeftButtonDown"/>
         </Grid>
     </Viewbox>
     

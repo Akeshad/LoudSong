@@ -46,9 +46,8 @@ namespace LoudSong
         private bool songFavourite; // The Song's bool for stating if it's an user's favourite song. True = it IS a favourite song | False = it IS NOT a favourite song.
         private int songYear; // The Song's Year for storing into the database.
 
-
-        SolidColorBrush Off = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-        SolidColorBrush On = new SolidColorBrush(Color.FromRgb(240, 222, 45));
+        SolidColorBrush toggleOff = new SolidColorBrush(Color.FromRgb(0, 0, 0)); // Color when the Favourite toggle option is 'Off'.
+        SolidColorBrush toggleOn = new SolidColorBrush(Color.FromRgb(240, 222, 45)); // Color when the Favourite toggle option is 'On'.
 
         #endregion
 
@@ -232,14 +231,14 @@ namespace LoudSong
         #region CheckBox
         private void Bu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (Bu.Toggled1 == true)
+            if (toggleFav.Toggled1 == true)
             {
-                Light.Fill = On;
+                Light.Fill = toggleOn;
                 songFavourite = true;
             }
             else
             {
-                Light.Fill = Off;
+                Light.Fill = toggleOff;
                 songFavourite = false;
             }
         }
@@ -595,11 +594,11 @@ namespace LoudSong
             {
                 if (listSongsReproduction.HasItems) // Checks if there is at least one song in the playlist.
                 {
-                    if (buttonPlayPause.Content.Equals("Play")) // Checks if the content of the 'Play / Pause' Button is 'Play'.
+                    if (buttonPlayPause.Content.Equals("▶")) // Checks if the content of the 'Play / Pause' Button is 'Play'.
                     {
                         play(); // Plays the current song.
                     }
-                    else if (buttonPlayPause.Content.Equals("Pause")) // Checks if the content of the 'Play / Pause' Button is 'Pause'.
+                    else if (buttonPlayPause.Content.Equals("⏸")) // Checks if the content of the 'Play / Pause' Button is 'Pause'.
                     {
                         pause(); // Pauses the current song.
                     }
@@ -631,7 +630,7 @@ namespace LoudSong
                 }
                 musicPlayer.Play(); // Starts playing music.
                 MediaElementIsPaused = false; // States that the MediaPlayer IS NOT paused.
-                buttonPlayPause.Content = "Pause"; // Sets the 'Play / Pause' Button text to 'Pause' as the app is actually playing music.
+                buttonPlayPause.Content = "⏸"; // Sets the 'Play / Pause' Button text to 'Pause' as the app is actually playing music.
             }
             catch (Exception ex)
             {
@@ -644,7 +643,7 @@ namespace LoudSong
         {
             try
             {
-                buttonPlayPause.Content = "Play"; // Sets the 'Play / Pause' Button text to 'Play' as the app is actually playing music.
+                buttonPlayPause.Content = "▶"; // Sets the 'Play / Pause' Button text to 'Play' as the app is actually playing music.
                 musicPlayer.Pause(); // Pauses music.
                 MediaElementIsPaused = true; // States that the MediaPlayer IS paused.
             }
@@ -661,7 +660,7 @@ namespace LoudSong
             {
                 if (listSongsReproduction.HasItems) // Checks if there is at least one song in the playlist.
                 {
-                    buttonPlayPause.Content = "Play"; // Sets the 'Play / Pause' Button text to 'Play' as the app is actually stopped playing music.
+                    buttonPlayPause.Content = "▶"; // Sets the 'Play / Pause' Button text to 'Play' as the app is actually stopped playing music.
                     musicPlayer.Stop(); // Stops playing music.
                     sliderTimeSong.Value = 0; // Sets the SongSlider to its minimum value.
                     MediaElementIsPaused = false; // States that the MediaPlayer IS NOT paused.

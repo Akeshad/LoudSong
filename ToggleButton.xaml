@@ -4,9 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LoudSong"
-          mc:Ignorable="d" Height="176.667" Width="288.667">
-
-
+             mc:Ignorable="d" Height="176.667" Width="288.667">
 
     <Viewbox Margin="0,2,2,1">
         <Grid HorizontalAlignment="Left" Height="60" Margin="0" VerticalAlignment="Top" Width="100">
@@ -14,4 +12,5 @@
             <Ellipse x:Name="Dot" Fill="White" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" Width="50" MouseLeftButtonDown="Dot_MouseLeftButtonDown"/>
         </Grid>
     </Viewbox>
+    
 </UserControl>

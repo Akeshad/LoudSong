@@ -45,28 +45,49 @@ namespace LoudSong
         // Event handler which activates when the user presses on the 'OK' Button. Converts the Enum to String for storing later in the database.
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if (cmbBoxGenre.SelectedIndex >= 0 && cmbBoxGenre.SelectedIndex <= cmbBoxGenre.Items.Count) // Checks if the selected option in the ComboBox is within its available options.
+            try
             {
-                genreString = cmbBoxGenre.SelectedItem.ToString(); // Stores the selected Item from the ComboBox as a String.
-                this.Close(); // Closes the CustomDialogWindow.
+                if (cmbBoxGenre.SelectedIndex >= 0 && cmbBoxGenre.SelectedIndex <= cmbBoxGenre.Items.Count) // Checks if the selected option in the ComboBox is within its available options.
+                {
+                    genreString = cmbBoxGenre.SelectedItem.ToString(); // Stores the selected Item from the ComboBox as a String.
+                    this.Close(); // Closes the CustomDialogWindow.
 
+                }
+                else
+                {
+                    MessageBox.Show("Chosen option is invalid! Please, try again.", "Error!"); // Shown if something wrong happens.
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("Chosen option is invalid! Please, try again.", "Error!"); // Shown if something wrong happens.
+                MessageBox.Show("There's been an error with the button element. Please, contact with the programmers for fixing the bug! Thank you!", "Error!");
             }
         }
 
         // Closes the CustomDialogWindow.
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close(); // Closes the CustomDialogWindow.
+            try
+            {
+                this.Close(); // Closes the CustomDialogWindow.
+            }
+            catch
+            {
+                MessageBox.Show("There's been an error with the button element. Please, contact with the programmers for fixing the bug! Thank you!", "Error!");
+            }
         }
 
         // Event handler which allows the user to move the window while left clicking and dragging on a invisible TextBlock situated at the top border of the window.
         private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove(); // Allows to move the window.
+            try
+            {
+                this.DragMove(); // Allows to move the window.
+            }
+            catch
+            {
+                MessageBox.Show("There's been an error when moving the window. Please, contact with the programmers for fixing the bug! Thank you!", "Error!");
+            }
         }
 
         // Event handler which closes the app.
@@ -76,9 +97,9 @@ namespace LoudSong
             {
                 Close(); // Closes the app.
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error with the button element. Please, contact with the programmers for fixing the bug! Thank you!", "Error!");
             }
         }
 
@@ -89,9 +110,9 @@ namespace LoudSong
             {
                 WindowState = WindowState.Minimized; // Minimizes the window.
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error with the button element. Please, contact with the programmers for fixing the bug! Thank you!", "Error!");
             }
         }
 

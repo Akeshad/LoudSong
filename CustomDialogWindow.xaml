@@ -26,8 +26,8 @@
         <!-- First Row Elements - TextBlock for moving the window and Close + Minimize Buttons -->
         <WrapPanel x:Name="panelButtons" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Top">
             <TextBlock x:Name="txtBlockMovingWindow" Width="500" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
-            <Ellipse x:Name="btnMin" Fill="LightBlue" Height="20" Width="20" Margin="0,3,5,3" MouseLeftButtonDown="btnMin_MinApp"/>
-            <Ellipse x:Name="btnClose" Fill="LightPink" Height="20" Width="20" Margin="0,3,5,3" MouseLeftButtonDown="btnClose_CloseApp"/>
+            <Ellipse x:Name="btnMin" Fill="RoyalBlue" Height="20" Width="20" Margin="0,3,5,3" MouseLeftButtonDown="btnMin_MinApp"/>
+            <Ellipse x:Name="btnClose" Fill="PaleVioletRed" Height="20" Width="20" Margin="0,3,5,3" MouseLeftButtonDown="btnClose_CloseApp"/>
         </WrapPanel>
 
         <!-- Second Row Elements - Label -->

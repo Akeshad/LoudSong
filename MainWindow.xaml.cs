@@ -83,9 +83,9 @@ namespace LoudSong
             {
                 Close(); // Closes the app.
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error with the Close button element. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -96,9 +96,9 @@ namespace LoudSong
             {
                 WindowState = WindowState.Minimized; // Minimizes the window.
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error with the Minimize button element. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -115,9 +115,9 @@ namespace LoudSong
                 sliderTimeSong.Maximum = ts.TotalSeconds; // Sets the Slider's maximum duration to the previous TimeSpan.
                 timer.Start(); // Starts the timer.
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error with the media player. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -129,9 +129,9 @@ namespace LoudSong
                 sliderTimeSong.Value = 0; // When the song has ended, sets the Slider's current value to 0 to indicate it has finished.
                 moveToNextTrack(); // Calls to the function which plays the next track (if there's one).
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error with the media player. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -149,9 +149,9 @@ namespace LoudSong
                     sliderTimeSong.Value = musicPlayer.Position.TotalSeconds; // Slider's position is updated each second.
                 }
             }
-            catch (Exception ex) 
+            catch 
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error with the timer. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -173,9 +173,9 @@ namespace LoudSong
                     e.Effects = DragDropEffects.None; // Nothing happens.
                 } 
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error while dragging a song. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -207,22 +207,36 @@ namespace LoudSong
                     playOrPauseTrack(); // Calls this method for playing or pausing the song.
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error while dropping a song in the playlist. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
         // Event handler which activates when the user double clicks on the ListBox playlist.
         private void playlist_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            openFiles(); // Function which allows to select one or many music files in order to be added to the playlist.
+            try
+            {
+                openFiles(); // Function which allows to select one or many music files in order to be added to the playlist.
+            }
+            catch
+            {
+                MessageBox.Show("There's been an error when opening the audio files. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
+            }
         }
 
         // Event handler which allows the user to move the window while left clicking and dragging on a invisible TextBlock situated at the top border of the window.
         private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove(); // Allows to move the window.
+            try
+            {
+                this.DragMove(); // Allows to move the window.
+            }
+            catch
+            {
+                MessageBox.Show("There's been an error when moving the window. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
+            }
         }
 
         #endregion
@@ -232,15 +246,22 @@ namespace LoudSong
         // Event handler which activates when the toggle button is being checked or unchecked.
         private void Bu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (toggleFav.Toggled1 == true) // Toggle On.
+            try
             {
-                Light.Fill = toggleOn; // Sets the color On to the toggle.
-                songFavourite = true;
+                if (toggleFav.Toggled1 == true) // Toggle On.
+                {
+                    // Light.Fill = toggleOn; // Sets the color On to the toggle.
+                    songFavourite = true;
+                }
+                else // Toggle Off.
+                {
+                    // Light.Fill = toggleOff; // Sets the color Off to the toggle.
+                    songFavourite = false;
+                }
             }
-            else // Toggle Off.
+            catch
             {
-                Light.Fill = toggleOff; // Sets the color Off to the toggle.
-                songFavourite = false;
+                MessageBox.Show("There's been an error with the Favourite toggle. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -262,9 +283,9 @@ namespace LoudSong
                     MessageBox.Show("There are no songs in the playlist!", "Error - Play / Pause Song"); // This is displayed if the user clicks on the button with no songs in the playlist.
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error with the Play or Puase button element. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -282,9 +303,9 @@ namespace LoudSong
                     MessageBox.Show("There are no songs in the playlist!", "Error - Stop Song"); // This is displayed if the user clicks on the button with no songs in the playlist.
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error with the Stop button element. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -302,9 +323,9 @@ namespace LoudSong
                     MessageBox.Show("There are no songs in the playlist!", "Error - Next Song"); // This is displayed if the user clicks on the button with no songs in the playlist.
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error with the Next button element. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -322,9 +343,9 @@ namespace LoudSong
                     MessageBox.Show("There are no songs in the playlist!", "Error - Previous Song"); // This is displayed if the user clicks on the button with no songs in the playlist.
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error with the Previous button element. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -335,9 +356,9 @@ namespace LoudSong
             {
                 openFiles(); // Function which allows to select one or many music files in order to be added to the playlist.
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error with the Open Songs button element. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -405,9 +426,9 @@ namespace LoudSong
                     MessageBox.Show("You can't save information about a song if there's none in the playlist!", "Error!"); // Shows the exception if some problem happens.
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error saving the song's info. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -455,30 +476,44 @@ namespace LoudSong
                         song.Favourites = (querySongInfoReader.GetString("isFavourite").ToString().Equals("1") ? true : false); // Assigning the Song's Favourite Status.
                         song.Lyrics = querySongInfoReader.GetString("lyrics"); // Assigning the Song's Lyrics.
 
+                        ImageBrush background = new ImageBrush();
+
                         switch (querySongInfoReader.GetString("genre").ToLower()) // Depending on what genre string is retrieved, the 'song' variable will be assigned one enum value.
                         {
                             case "lofi":
                                 song.Genre = Genre.Lofi;
+                                background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/bg_lofi.jpg"));
+                                LayoutRoot.Background = background;
                                 break;
 
                             case "jazz":
                                 song.Genre = Genre.Jazz;
+                                background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/bg_jazz.jpg"));
+                                LayoutRoot.Background = background;
                                 break;
 
                             case "techno":
                                 song.Genre = Genre.Techno;
+                                background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/bg_techno.jpg"));
+                                LayoutRoot.Background = background;
                                 break;
 
                             case "pop":
                                 song.Genre = Genre.Pop;
+                                background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/bg_pop.jpg"));
+                                LayoutRoot.Background = background;
                                 break;
 
                             case "new wave":
                                 song.Genre = Genre.NewWave;
+                                background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/bg_newwave.jpg"));
+                                LayoutRoot.Background = background;
                                 break;
 
                             case "other":
                                 song.Genre = Genre.Other;
+                                background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/bg_other.jpg"));
+                                LayoutRoot.Background = background;
                                 break;
                         }
                         MessageBox.Show(bodyInfo, $"{song.Title} - Information"); // Displaying the song's information from the database.
@@ -490,9 +525,9 @@ namespace LoudSong
                     MessageBox.Show("You can't retrieve information about a song if there's not a current one in the playlist!", "Error!"); // Shows the exception if some problem happens.
                 }
             }
-            catch (Exception ex) 
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error while retrieving the song's info. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -505,20 +540,41 @@ namespace LoudSong
         // Event handler which activates when the dragging action has started (Song Slider).
         private void sliderTimeLine_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
         {
-            isDragging = true;
+            try
+            {
+                isDragging = true;
+            }
+            catch
+            {
+                MessageBox.Show("There's been an error with the time bar. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
+            }
         }
 
         // Event handler which activates when the dragging action has ended (Song Slider).
         private void sliderTimeLine_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
-            isDragging = false;
-            musicPlayer.Position = TimeSpan.FromSeconds(sliderTimeSong.Value); // Sets the current duration value from the song to the slider.
+            try
+            {
+                isDragging = false;
+                musicPlayer.Position = TimeSpan.FromSeconds(sliderTimeSong.Value); // Sets the current duration value from the song to the slider.
+            }
+            catch
+            {
+                MessageBox.Show("There's been an error with the time bar. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
+            }
         }
 
         // Event handler which activates when the slider is being left clicked on a position (Song Slider).
         private void sliderTimeLine_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            musicPlayer.Position = TimeSpan.FromSeconds(sliderTimeSong.Value); // Sets the current duration value from the song to the slider.
+            try
+            {
+                musicPlayer.Position = TimeSpan.FromSeconds(sliderTimeSong.Value); // Sets the current duration value from the song to the slider.
+            }
+            catch
+            {
+                MessageBox.Show("There's been an error with the time bar. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
+            }
         }
 
         #endregion
@@ -528,20 +584,41 @@ namespace LoudSong
         // Event handler which activates when the dragging action has started (Volume Slider).
         private void sliderVolume_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
         {
-            isDragging = true;
+            try
+            {
+                isDragging = true;
+            }
+            catch
+            {
+                MessageBox.Show("There's been an error with the volume bar. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
+            }
         }
 
         // Event handler which activates when the dragging action has ended (Volume Slider).
         private void sliderVolume_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
-            isDragging = false;
-            musicPlayer.Volume = sliderVolume.Value; // Sets the MediaPlayer Volume to the Slider's value.
+            try
+            {
+                isDragging = false;
+                musicPlayer.Volume = sliderVolume.Value; // Sets the MediaPlayer Volume to the Slider's value.
+            }
+            catch
+            {
+                MessageBox.Show("There's been an error with the volume bar. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
+            }
         }
 
         // Event handler which activates when the slider is being left clicked on a position (Volume Slider).
         private void sliderVolume_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            musicPlayer.Volume = sliderVolume.Value; // Sets the MediaPlayer Volume to the Slider's value.
+            try
+            {
+                musicPlayer.Volume = sliderVolume.Value; // Sets the MediaPlayer Volume to the Slider's value.
+            }
+            catch
+            {
+                MessageBox.Show("There's been an error with the volume bar. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
+            }
         }
 
         #endregion
@@ -582,9 +659,9 @@ namespace LoudSong
                     playOrPauseTrack(); // Function which starts playing the first new song of the playlist.
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error while opening the audio files. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -605,9 +682,9 @@ namespace LoudSong
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error while playing or pausing the song. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -633,9 +710,9 @@ namespace LoudSong
                 MediaElementIsPaused = false; // States that the MediaPlayer IS NOT paused.
                 buttonPlayPause.Content = "⏸"; // Sets the 'Play / Pause' Button text to 'Pause' as the app is actually playing music.
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error while trying to play the song. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -667,9 +744,9 @@ namespace LoudSong
                     MediaElementIsPaused = false; // States that the MediaPlayer IS NOT paused.
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error while trying to stop the song. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -691,9 +768,9 @@ namespace LoudSong
                     play(); // Plays the next song (the current one now).
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error while moving to the next song. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 
@@ -715,9 +792,9 @@ namespace LoudSong
                     play(); // Plays the next song (the current one now).
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error while moving to the previous song. Please, contact with the programmers for fixing the bug! Thank you!", "Error!"); // Shows the exception if some problem happens.
             }
         }
 

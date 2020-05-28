@@ -8,6 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/prueba.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/bg_jazz.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/bg_lofi.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/bg_newwave.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/bg_other.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/bg_pop.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/bg_techno.jpg")]
 
 

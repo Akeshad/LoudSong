@@ -17,7 +17,7 @@
 
         <!-- Grid's image background -->
         <Grid.Background>
-            <ImageBrush ImageSource="/images/background.jpg"/>
+            <ImageBrush ImageSource="/images/bg_other.jpg"/>
         </Grid.Background>
 
         <!-- Grid's rows -->
@@ -41,9 +41,10 @@
         </Grid.ColumnDefinitions>
 
         <!-- First Row Elements - Window's Control Buttons -->
+        <TextBlock x:Name="txtBlockMoveWindow" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="5" Height="30" Width="740" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
         <WrapPanel x:Name="controlsPanel" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3">
-            <Ellipse x:Name="btnMin" Fill="LightBlue" Height="20" Width="20" Margin="0,0,5,0" MouseLeftButtonDown="btnMin_MinApp"/>
-            <Ellipse x:Name="btnClose" Fill="LightPink" Height="20" Width="20" Margin="0,0,5,0" MouseLeftButtonDown="btnClose_CloseApp"/>
+            <Ellipse x:Name="btnMin" Fill="SkyBlue" Height="20" Width="20" Margin="0,0,5,0" MouseLeftButtonDown="btnMin_MinApp"/>
+            <Ellipse x:Name="btnClose" Fill="PaleVioletRed" Height="20" Width="20" Margin="0,0,5,0" MouseLeftButtonDown="btnClose_CloseApp"/>
         </WrapPanel>
 
         <!-- Second Row Elements - MediaElement and ListBox -->
@@ -82,6 +83,11 @@
             <Button x:Name="buttonNextSong" Content="→" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="35" Margin="0,0,5,0" 
                     Padding="0,-5,0,0" FontSize="30" Click="btnNext_Click"/>
         </WrapPanel>
+
+        <WrapPanel x:Name="favPanel" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="Favourite?" Background="#89AEE1" Foreground="#E9F259" Padding="7" BorderThickness="1" BorderBrush="SlateGray"/>
+            <local:TobleButton x:Name="toggleFav" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Height="22" Width="50" MouseLeftButtonDown="Bu_MouseLeftButtonDown"/>
+        </WrapPanel>
         
         <WrapPanel x:Name="infoPanel" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button x:Name="btnShowInfo" Content="Show Info" HorizontalAlignment="Center" VerticalAlignment="Center" Width="70" Height="35" Margin="0,0,5,0" 
@@ -92,9 +98,9 @@
         
         <Button x:Name="buttonOpenFile" Grid.Row="6" Grid.Column="4" Content="Open Songs" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Height="35" 
                 Click="btnOpenFiles_Click"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="5" Height="25" Width="732" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
-        <local:TobleButton x:Name="toggleFav" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Height="22" Width="50" MouseLeftButtonDown="Bu_MouseLeftButtonDown"/>
-        <Ellipse x:Name="Light" Grid.Row="6" Grid.Column="2" Fill="#FF0C0C0B" HorizontalAlignment="Center" Height="141" Margin="360,96,15,82" VerticalAlignment="Center" Width="142"/>
+        
+        
+        <!--<Ellipse x:Name="Light" Grid.Row="6" Grid.Column="2" Fill="#FF0C0C0B" HorizontalAlignment="Center" Height="141" Margin="360,96,15,82" VerticalAlignment="Center" Width="142"/>-->
 
     </Grid>
 

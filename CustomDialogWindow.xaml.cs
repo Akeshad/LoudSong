@@ -55,50 +55,64 @@ namespace LoudSong
         // Event handler which activates when the user presses on the 'OK' Button. Checks all the input data, stores it if it's valid and closes the CustomWindow itself.
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if (isDuration) // Checks if the user's input IS related to the Song's Duration.
+            try
             {
-                regexDuration = new Regex(@"\d{2}:\d{2}"); // Regular Expression set!
-                if (txtBoxCustomDialog.Text == null || !regexDuration.IsMatch(txtBoxCustomDialog.Text)) // Checks if the user's input for duration is empty, above the character limit and if the input follows a '03:29' pattern.
+                if (isDuration) // Checks if the user's input IS related to the Song's Duration.
                 {
-                    MessageBox.Show(errorText, "Error!"); // The input is not correct, so this MessageBox informs about the error.
+                    regexDuration = new Regex(@"\d{2}:[0-5][0-9]"); // Regular Expression set!
+                    if (txtBoxCustomDialog.Text == null || !regexDuration.IsMatch(txtBoxCustomDialog.Text) || txtBoxCustomDialog.Text.Length >= 6) // Checks if the user's input for duration is empty, above the character limit and if the input follows a '03:29' pattern.
+                    {
+                        MessageBox.Show(errorText, "Error!"); // The input is not correct, so this MessageBox informs about the error.
+                    }
+                    else
+                    {
+                        info = txtBoxCustomDialog.Text; // Stores the valid input as the user's information about the song.
+                        this.Close(); // Closes the CustomDialogWindow.
+                    }
                 }
-                else
+                else if (isYear) // Checks if the user's input IS related to the Song's Year.
                 {
-                    info = txtBoxCustomDialog.Text; // Stores the valid input as the user's information about the song.
-                    this.Close(); // Closes the CustomDialogWindow.
+                    regexYear = new Regex(@"[1-2]\d{3}"); // Regular Expression set!
+                    if (txtBoxCustomDialog.Text == null || !regexYear.IsMatch(txtBoxCustomDialog.Text) || txtBoxCustomDialog.Text.Length >= 5) // Checks if the user's input for duration is empty, above the character limit and if the input follows a '03:29' pattern.
+                    {
+                        MessageBox.Show(errorText, "Error!"); // The input is not correct, so this MessageBox informs about the error.
+                    }
+                    else
+                    {
+                        info = txtBoxCustomDialog.Text; // Stores the valid input as the user's information about the song.
+                        this.Close(); // Closes the CustomDialogWindow.
+                    }
+                }
+                else // Checks if the user's input IS NOT related to the Song's Year or Duration.
+                {
+                    if (txtBoxCustomDialog.Text == null || txtBoxCustomDialog.Text.Length == 0 || txtBoxCustomDialog.Text.Length >= caracters) // Checks if the user's input is empty and within the character limit.
+                    {
+                        MessageBox.Show(errorText, "Error!"); // The input is not correct, so this MessageBox informs about the error.
+                    }
+                    else
+                    {
+                        info = txtBoxCustomDialog.Text; // Stores the valid input as the user's information about the song.
+                        this.Close(); // Closes the CustomDialogWindow.
+                    }
                 }
             }
-            else if (isYear) // Checks if the user's input IS related to the Song's Year.
+            catch
             {
-                regexYear = new Regex(@"\d{4}"); // Regular Expression set!
-                if (txtBoxCustomDialog.Text == null || !regexYear.IsMatch(txtBoxCustomDialog.Text)) // Checks if the user's input for duration is empty, above the character limit and if the input follows a '03:29' pattern.
-                {
-                    MessageBox.Show(errorText, "Error!"); // The input is not correct, so this MessageBox informs about the error.
-                }
-                else
-                {
-                    info = txtBoxCustomDialog.Text; // Stores the valid input as the user's information about the song.
-                    this.Close(); // Closes the CustomDialogWindow.
-                }
-            }
-            else // Checks if the user's input IS NOT related to the Song's Year or Duration.
-            {
-                if (txtBoxCustomDialog.Text == null || txtBoxCustomDialog.Text.Length == 0 || txtBoxCustomDialog.Text.Length >= caracters) // Checks if the user's input is empty and within the character limit.
-                {
-                    MessageBox.Show(errorText, "Error!"); // The input is not correct, so this MessageBox informs about the error.
-                }
-                else
-                {
-                    info = txtBoxCustomDialog.Text; // Stores the valid input as the user's information about the song.
-                    this.Close(); // Closes the CustomDialogWindow.
-                }
+                MessageBox.Show("There's been an error with the button element. Please, contact with the programmers for fixing the bug! Thank you!", "Error!");
             }
         }
 
         // Closes the CustomDialogWindow.
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close(); // Closes the CustomDialogWindow.
+            try
+            {
+                this.Close(); // Closes the CustomDialogWindow.
+            }
+            catch
+            {
+                MessageBox.Show("There's been an error with the button element. Please, contact with the programmers for fixing the bug! Thank you!", "Error!");
+            }
         }
 
         // Event handler which closes the app.
@@ -108,9 +122,9 @@ namespace LoudSong
             {
                 Close(); // Closes the app.
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error with the button element. Please, contact with the programmers for fixing the bug! Thank you!", "Error!");
             }
         }
 
@@ -121,16 +135,23 @@ namespace LoudSong
             {
                 WindowState = WindowState.Minimized; // Minimizes the window.
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message); // Shows the exception if some problem happens.
+                MessageBox.Show("There's been an error with the button element. Please, contact with the programmers for fixing the bug! Thank you!", "Error!");
             }
         }
 
         // Event handler which allows the user to move the window while left clicking and dragging on a invisible TextBlock situated at the top border of the window.
         private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove(); // Allows to move the window.
+            try
+            {
+                this.DragMove(); // Allows to move the window.
+            }
+            catch
+            {
+                MessageBox.Show("There's been an error when moving the window. Please, contact with the programmers for fixing the bug! Thank you!", "Error!");
+            }
         }
 
         #endregion

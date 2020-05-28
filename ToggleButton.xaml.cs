@@ -55,17 +55,24 @@ namespace LoudSong
         // Event handler which activates when the toggle is being left clicked in order to toggle it 'On' or 'Off'.
         private void Back_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (!Toggled) // Not toggled.
+            try
             {
-                Back.Fill = On; // Sets the 'On' color.
-                Toggled = true; // Toggled.
-                Dot.Margin = RightSide; // Margin at right.
+                if (!Toggled) // Not toggled.
+                {
+                    Back.Fill = On; // Sets the 'On' color.
+                    Toggled = true; // Toggled.
+                    Dot.Margin = RightSide; // Margin at right.
+                }
+                else // Toggled.
+                {
+                    Back.Fill = Off; // Sets the 'Off' color.
+                    Toggled = false; // Not toggled.
+                    Dot.Margin = LeftSide; // Margin at left.
+                }
             }
-            else // Toggled.
+            catch
             {
-                Back.Fill = Off; // Sets the 'Off' color.
-                Toggled = false; // Not toggled.
-                Dot.Margin = LeftSide; // Margin at left.
+                MessageBox.Show("There's been an error with the toggle element. Please, contact with the programmers for fixing the bug! Thank you!", "Error!");
             }
         }
 

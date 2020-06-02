@@ -484,36 +484,96 @@ namespace LoudSong
                                 song.Genre = Genre.Lofi;
                                 background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/bg_lofi.jpg"));
                                 LayoutRoot.Background = background;
+
+                                buttonPlayPause.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonStop.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonNextSong.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonPreviousSong.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                btnSetInfo.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                btnShowInfo.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonOpenFile.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                favLabel.Style = (Style)Application.Current.Resources["mainLabelStyle"];
+
                                 break;
 
                             case "jazz":
                                 song.Genre = Genre.Jazz;
                                 background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/bg_jazz.jpg"));
                                 LayoutRoot.Background = background;
+
+                                buttonPlayPause.Style = (Style)Application.Current.Resources["jazzStyle"];
+                                buttonStop.Style = (Style)Application.Current.Resources["jazzStyle"];
+                                buttonNextSong.Style = (Style)Application.Current.Resources["jazzStyle"];
+                                buttonPreviousSong.Style = (Style)Application.Current.Resources["jazzStyle"];
+                                btnSetInfo.Style = (Style)Application.Current.Resources["jazzStyle"];
+                                btnShowInfo.Style = (Style)Application.Current.Resources["jazzStyle"];
+                                buttonOpenFile.Style = (Style)Application.Current.Resources["jazzStyle"];
+                                favLabel.Style = (Style)Application.Current.Resources["jazzStyleLabel"];
+
                                 break;
 
                             case "techno":
                                 song.Genre = Genre.Techno;
                                 background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/bg_techno.jpg"));
                                 LayoutRoot.Background = background;
+
+                                buttonPlayPause.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonStop.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonNextSong.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonPreviousSong.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                btnSetInfo.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                btnShowInfo.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonOpenFile.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                favLabel.Style = (Style)Application.Current.Resources["mainLabelStyle"];
+
                                 break;
 
                             case "pop":
                                 song.Genre = Genre.Pop;
                                 background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/bg_pop.jpg"));
                                 LayoutRoot.Background = background;
+
+                                buttonPlayPause.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonStop.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonNextSong.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonPreviousSong.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                btnSetInfo.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                btnShowInfo.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonOpenFile.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                favLabel.Style = (Style)Application.Current.Resources["mainLabelStyle"];
+
                                 break;
 
                             case "new wave":
                                 song.Genre = Genre.NewWave;
                                 background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/bg_newwave.jpg"));
                                 LayoutRoot.Background = background;
+
+                                buttonPlayPause.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonStop.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonNextSong.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonPreviousSong.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                btnSetInfo.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                btnShowInfo.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonOpenFile.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                favLabel.Style = (Style)Application.Current.Resources["mainLabelStyle"];
+
                                 break;
 
                             case "other":
                                 song.Genre = Genre.Other;
                                 background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/bg_other.jpg"));
                                 LayoutRoot.Background = background;
+
+                                buttonPlayPause.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonStop.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonNextSong.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonPreviousSong.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                btnSetInfo.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                btnShowInfo.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                buttonOpenFile.Style = (Style)Application.Current.Resources["mainButtonStyle"];
+                                favLabel.Style = (Style)Application.Current.Resources["mainLabelStyle"];
+
                                 break;
                         }
                         MessageBox.Show(bodyInfo, $"{song.Title} - Information"); // Displaying the song's information from the database.

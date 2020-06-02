@@ -1,8 +1,23 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:LoudSong">
+
+    <Style TargetType="{x:Type Button}" x:Key="mainButtonStyle">
+        <Setter Property="Background" Value="#89AEE1" />
+        <Setter Property="Foreground" Value="#E9F259" />
+    </Style>
     
-    <Style TargetType="{x:Type Button}">
+    <Style TargetType="{ x:Type Button}" x:Key="jazzStyle">
+        <Setter Property="Background" Value="#4A001B" />
+        <Setter Property="Foreground" Value="#B95C7E" />
+    </Style>
+    
+    <Style TargetType="{ x:Type Label}" x:Key="jazzStyleLabel">
+        <Setter Property="Background" Value="#4A001B" />
+        <Setter Property="Foreground" Value="#B95C7E" />
+    </Style>
+
+    <Style TargetType="{x:Type Label}" x:Key="mainLabelStyle">
         <Setter Property="Background" Value="#89AEE1" />
         <Setter Property="Foreground" Value="#E9F259" />
     </Style>
